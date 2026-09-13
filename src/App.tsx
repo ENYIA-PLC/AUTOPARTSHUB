@@ -5,12 +5,11 @@ import { AuthModal } from './components/AuthModal';
 import { SellerProfile } from './components/SellerProfile';
 import { AddPartModal } from './components/AddPartModal';
 import { DIYHub } from './components/DIYHub';
-import { Mailbox } from './components/Mailbox';
 import { MyGarage } from './components/MyGarage';
 import { WishlistModal } from './components/WishlistModal';
 import { MechanicsGrid } from './components/MechanicsGrid';
 import { OrderHistory } from './components/OrderHistory';
-import { Route, Map as MapIcon, ShoppingBag, PlusCircleIcon, ChevronRight, User, LogOut, Sun, Moon, Settings, Wrench, Mail, Car, Globe, Heart, Users, ClipboardList, QrCode, Frame } from 'lucide-react';
+import { Route, Map as MapIcon, ShoppingBag, PlusCircleIcon, ChevronRight, User, LogOut, Sun, Moon, Settings, Wrench, Car, Globe, Heart, Users, ClipboardList, QrCode, Frame } from 'lucide-react';
 import { useAuth } from './AuthContext';
 import { useTheme } from './ThemeContext';
 import { useToast } from './ToastContext';
@@ -18,7 +17,7 @@ import { useLanguage } from './LanguageContext';
 import { QRCodeScannerModal } from './components/QRCodeScannerModal';
 import { InteractiveVehicleDiagram } from './components/InteractiveVehicleDiagram';
 
-type TabId = 'marketplace' | 'tracker' | 'seller-profile' | 'diy' | 'mail' | 'garage' | 'wishlist' | 'mechanics' | 'orders' | 'diagram';
+type TabId = 'marketplace' | 'tracker' | 'seller-profile' | 'diy' | 'garage' | 'wishlist' | 'mechanics' | 'orders' | 'diagram';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('marketplace');
@@ -84,17 +83,6 @@ export default function App() {
             >
                 <div className="flex items-center gap-2">
                     <Wrench className="w-4 h-4" /> {t('diyHub')}
-                </div>
-            </button>
-            <button 
-                onClick={() => setActiveTab('mail')}
-                className={`px-3 lg:px-4 py-1.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
-                    activeTab === 'mail' ? 'bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50'
-                }`}
-            >
-                <div className="flex items-center gap-2 relative">
-                    <Mail className="w-4 h-4" /> {t('inbox')}
-                    {accessToken && <span className="absolute -top-1 -right-2 w-2 h-2 bg-amber-500 rounded-full"></span>}
                 </div>
             </button>
             <button 
@@ -192,7 +180,6 @@ export default function App() {
         {activeTab === 'tracker' && <TrackerMap />}
         {activeTab === 'seller-profile' && <SellerProfile />}
         {activeTab === 'diy' && <DIYHub />}
-        {activeTab === 'mail' && <Mailbox />}
         {activeTab === 'garage' && <MyGarage />}
         {activeTab === 'wishlist' && <WishlistModal />}
         {activeTab === 'mechanics' && <MechanicsGrid />}
@@ -218,13 +205,6 @@ export default function App() {
         <button className={`p-2 flex flex-col items-center gap-1 transition-colors ${activeTab === 'tracker' ? 'text-amber-500' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300'}`} onClick={() => setActiveTab('tracker')}>
             <MapIcon className="w-5 h-5" />
             <span className="text-[10px] font-bold">{t('track')}</span>
-        </button>
-        <button className={`p-2 flex flex-col items-center gap-1 transition-colors relative ${activeTab === 'mail' ? 'text-amber-500' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300'}`} onClick={() => setActiveTab('mail')}>
-            <div className="relative">
-                <Mail className="w-5 h-5" />
-                {accessToken && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-zinc-50 dark:border-[#1a1a1a]"></span>}
-            </div>
-            <span className="text-[10px] font-bold">{t('inbox')}</span>
         </button>
         <button className={`p-2 flex flex-col items-center gap-1 transition-colors ${activeTab === 'diy' ? 'text-amber-500' : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300'}`} onClick={() => setActiveTab('diy')}>
             <Wrench className="w-5 h-5" />
